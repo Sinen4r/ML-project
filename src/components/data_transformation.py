@@ -57,6 +57,8 @@ class DataTransformation:
            
         except Exception as e:
             raise CustomerException(e,sys)
+        
+
     def initiate_data_transformation(self,train_path,test_path):
         try:
             train_df=pd.read_csv(train_path)
@@ -67,7 +69,6 @@ class DataTransformation:
             
             preprocessing_obj=self.getDataTransformer_object()
             target_column_name="math_score"
-            num_Features=["writing_score","reading_score"]
 
             input_feat_train_df=train_df.drop(columns=target_column_name,axis=1)
             target_feat_train_df=train_df[target_column_name]
@@ -95,6 +96,6 @@ class DataTransformation:
                 obj=preprocessing_obj
             )
 
-            return train_arr,test_arr,self.dataTransformationConfig.preprocessor_obj_file_path
+            return train_arr,test_arr#,self.dataTransformationConfig.preprocessor_obj_file_path
         except Exception as e:
             raise CustomerException(e,sys)
